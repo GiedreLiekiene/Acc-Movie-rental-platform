@@ -1,0 +1,111 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #D9D9D9;
+    font-family: "Inter";
+}
+
+.header {
+    color: #FFFFFF;
+    padding: 10px;
+    text-align: center;
+    font-size: 40px;
+    font-family: "Inter";
+    font-weight: bold;
+    font-style: italic;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.section-1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+label[type=text], label[type=password] {
+   float: left;
+   margin-top: 10px;
+   font-size: 14px;
+}
+
+input[type=text], input[type=password] {
+    background-color: #D9D9D9;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 2px;
+    padding: 5px;
+    text-align: left;
+    width: 200px;
+}
+
+.section-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #FFFFFF;
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2); 
+}
+
+.button-sec {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+.button {
+    background-color: #363636;
+    color: #FFFFFF;
+    padding: 5px 40px;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+.footer {
+    position:relative;
+    color: #FFFFFF;
+    background-color: #333;
+    padding: 10px;
+    text-align: center;
+}
+
+.footer-sec-1 {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.footer-sec-2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
