@@ -83,6 +83,19 @@
     border-bottom-left-radius: 110px;
 }
 
+.button-time {
+    background-color: #363636;
+    color: #FFFFFF;
+}
+
+.time-window {
+    background-color: #FFFFFF;
+    color: #000000;
+    font-weight: bold;
+    padding: 0px 15px 2px;
+}
+
+
 .button {
     background-color: #C93333;
     font-weight:bold;
