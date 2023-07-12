@@ -45,6 +45,44 @@
     margin: 20px;
 }
 
+.profile-card {
+    padding:10px 40px 60px;
+    background-color:#FFFFFF;
+    margin: 20px;
+    margin-bottom: 200px;
+    width: 90%;
+    border-radius: 20px;
+    position: relative;
+}
+
+.main-heading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 18px;
+    font-family:"Inter";
+    padding: 0px 0px 30px;
+    align-items: center;
+}
+
+.profile-pic {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    margin-bottom: 30px;
+    margin-left: 25px;
+}
+
+.profile-info {
+    text-align:left;
+    position: absolute;
+    top: 25%;
+    left: 38%;
+    right: 0;
+}
+
+
 .button {
     background-color: #363636;
     font-weight:bold;
@@ -54,6 +92,7 @@
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
     border-radius: 20px;
     white-space: nowrap;
+    margin-left: 40px;
 }
 
 .btn-column {
