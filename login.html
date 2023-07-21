@@ -20,7 +20,7 @@
                 <input type="password" name="password" id="password" placeholder="password" >
                 <br>
                 <div class="button-sec">
-                <button class="button" href="home.html">Sign in</button>
+                <button class="button" onclick="validateLoginForm()" href="home.html">Sign in</button>
                 </div>
             </div>
             </form>
@@ -48,9 +48,43 @@
                 <button class="button" href="home.html">Register</button>
                 </div>
             </div>
-        </form>
+            </form>
             </div>
         </div>
+
+        <script> 
+            function validateLoginForm() {
+                const emailInput = document.getElementById('email');
+                const passwordInput = document.getElementById('password');
+                const email = emailInput.value.trim();
+                const password = passwordInput.value.trim();
+
+            // Check if email is in a valid format
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                alert('Please provide a valid email address.');
+                emailInput.focus();
+                return;
+             }
+            
+            // Check if both email and password fields are not empty
+            if (email === '' || password === '') {
+                alert('Both email and password fields are required.');
+                return;
+            }
+
+            // Simulate server-side authentication (Replace this with actual server-side logic)
+            const validEmail = 'test@example.com';
+            const validPassword = 'test123';
+
+            if (email === validEmail && password === validPassword) {
+                window.location.href = 'home.html';
+            } else {
+                alert('Invalid email or password. Please try again.');
+            }
+        }
+        </script>
+
         <div class="footer">
             <div class="footer-sec-1">Made by: Giedre Liekiene</div>
             <div class="footer-sec-2">2023</div>
