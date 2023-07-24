@@ -27,10 +27,9 @@
                     <th>Price for 12h</th>
                     <th>Is in stock</th>
                     <th></th>
-                  </tr>
-
-                  <!-- Previous HTML/CSS task code -->
-
+                </tr>
+                
+                <!-- Previous HTML/CSS task code -->
                   <!-- <tr class="table-content">
                     <td>Batman</td>
                     <td>Action</td>
@@ -58,8 +57,8 @@
                     <td>4.55$</td>
                     <td><img src="icons/red.png" style="height:10%;width: 10%"></td>
                     <td class="btn-column"><button class="button" href="home.html">Rent</button></td>
-                  </tr>
-              </table> -->
+                  </tr> -->
+              </table>
         </div>
     </div>
 
@@ -109,6 +108,7 @@
           row.appendChild(stockCell);
 
           const buttonCell = document.createElement("td");
+          buttonCell.className = "btn-column";
           const rentButton = document.createElement("button");
           rentButton.className = "button";
           rentButton.textContent = "Rent";
