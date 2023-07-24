@@ -14,13 +14,13 @@
             <form>
             <div class="section-1">
                 <label for="email">Email</label>
-                <input type="text" name="email" id="email" placeholder="email">
+                <input type="text" name="email" id="emailLogin" placeholder="email">
                 <br>
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password" placeholder="password" >
+                <input type="password" name="password" id="passwordLogin" placeholder="password" >
                 <br>
                 <div class="button-sec">
-                <button class="button" onclick="validateLoginForm()" href="home.html">Sign in</button>
+                <button type="button" class="button" onclick="validateLoginForm()">Sign in</button>
                 </div>
             </div>
             </form>
@@ -33,29 +33,30 @@
                 <input type="text" name="surname" id="surname" placeholder="surname">
                 <br>
                 <label for="email">Email</label>
-                <input type="text" name="email" id="email" placeholder="email">
+                <input type="text" name="email" id="emailRegister" placeholder="email">
                 <br>
                 <label for="email again">Email again</label>
-                <input type="text" name="email" id="email" placeholder="email">
+                <input type="text" name="emailAgain" id="emailAgain" placeholder="email">
                 <br>
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password" placeholder="password">
+                <input type="password" name="password" id="passwordRegister" placeholder="password">
                 <br>
                 <label for="password again">Password again</label>
-                <input type="password" name="password" id="password" placeholder="password">
+                <input type="password" name="passwordAgain" id="passwordAgain" placeholder="password">
                 <br>
                 <div class="button-sec">
-                <button class="button" href="home.html">Register</button>
+                <button type="button" class="button" onclick="validateRegisterForm()">Register</button>
                 </div>
             </div>
             </form>
             </div>
         </div>
 
+        <!-- Login form validation  -->
         <script> 
             function validateLoginForm() {
-                const emailInput = document.getElementById('email');
-                const passwordInput = document.getElementById('password');
+                const emailInput = document.getElementById('emailLogin');
+                const passwordInput = document.getElementById('passwordLogin');
                 const email = emailInput.value.trim();
                 const password = passwordInput.value.trim();
 
@@ -73,7 +74,7 @@
                 return;
             }
 
-            // Simulate server-side authentication (Replace this with actual server-side logic)
+            // Simulate server-side authentication 
             const validEmail = 'test@example.com';
             const validPassword = 'test123';
 
@@ -85,6 +86,72 @@
         }
         </script>
 
+        <!-- Register form validation -->
+        <script>
+            function validateRegisterForm() {
+            const nameInput = document.getElementById('name');
+            const surnameInput = document.getElementById('surname');
+            const emailInput = document.getElementById('emailRegister');
+            const emailAgainInput = document.getElementById('emailAgain');
+            const passwordInput = document.getElementById('passwordRegister');
+            const passwordAgainInput = document.getElementById('passwordAgain');
+
+            const name = nameInput.value.trim();
+            const surname = surnameInput.value.trim();
+            const email = emailInput.value.trim();
+            const emailAgain = emailAgainInput.value.trim();
+            const password = passwordInput.value.trim();
+            const passwordAgain = passwordAgainInput.value.trim();
+
+            // Name field validation
+            const nameRegex = /^[A-Za-z]{2,}$/;
+            if (!nameRegex.test(name)) {
+                alert('Name should contain two or more letters and cannot be empty.');
+                nameInput.focus();
+                return;
+            }
+
+            // Surname field validation (optional)
+            if (surname !== '' && !nameRegex.test(surname)) {
+                alert('Surname should contain two or more letters.');
+                surnameInput.focus();
+                return;
+            }
+
+            // Email field validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                console.log(email, emailInput);
+                alert('Please provide a valid email address.');
+                emailInput.focus();
+                return;
+            }
+
+            // Email again field validation
+            if (emailAgain !== email) {
+                alert('Email addresses do not match.');
+                emailAgainInput.focus();
+                return;
+            }
+
+            // Password field validation
+            if (password.length < 8) {
+                alert('Password should be 8 or more symbols long.');
+                passwordInput.focus();
+                return;
+            }
+
+            // Password again field validation
+            if (passwordAgain !== password) {
+                alert('Passwords do not match.');
+                passwordAgainInput.focus();
+                return;
+            }
+
+            // Redirect to home.html on successful validation
+            window.location.href = 'home.html';
+        }
+        </script>
         <div class="footer">
             <div class="footer-sec-1">Made by: Giedre Liekiene</div>
             <div class="footer-sec-2">2023</div>
