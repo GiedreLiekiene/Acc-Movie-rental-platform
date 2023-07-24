@@ -19,7 +19,7 @@
                 </tr>
               </table>
              
-              <table class="table2">
+              <table id="movieTable" class="table2">
                 <th class="main-heading" colspan="5">Available Movies</th>
                 <tr class="table-headings">
                     <th>Name</th>
@@ -28,7 +28,10 @@
                     <th>Is in stock</th>
                     <th></th>
                   </tr>
-                  <tr class="table-content">
+
+                  <!-- Previous HTML/CSS task code -->
+
+                  <!-- <tr class="table-content">
                     <td>Batman</td>
                     <td>Action</td>
                     <td>4.55$</td>
@@ -56,10 +59,71 @@
                     <td><img src="icons/red.png" style="height:10%;width: 10%"></td>
                     <td class="btn-column"><button class="button" href="home.html">Rent</button></td>
                   </tr>
-              </table>
+              </table> -->
         </div>
-        
     </div>
+
+    <script>
+      // JavaScript array containing information about 8 movies
+      const movies = [
+        { name: "Movie 1", genre: "Action", price: "4.55$", stockCount: 5 },
+        { name: "Movie 2", genre: "Comedy", price: "3.99$", stockCount: 0 },
+        { name: "Movie 3", genre: "Drama", price: "6.25$", stockCount: 2 },
+        { name: "Movie 4", genre: "Thriller", price: "5.75$", stockCount: 0 },
+        { name: "Movie 5", genre: "Adventure", price: "7.50$", stockCount: 3 },
+        { name: "Movie 6", genre: "Sci-Fi", price: "6.99$", stockCount: 1 },
+        { name: "Movie 7", genre: "Romance", price: "4.25$", stockCount: 0 },
+        { name: "Movie 8", genre: "Horror", price: "4.99$", stockCount: 4 },
+      ];
+
+       // Function to generate the movie list dynamically
+      function generateMovieList() {
+        const movieTable = document.getElementById("movieTable");
+        movies.forEach((movie) => {
+          const row = document.createElement("tr");
+          row.className = "table-content";
+
+          const nameCell = document.createElement("td");
+          nameCell.textContent = movie.name;
+          row.appendChild(nameCell);
+
+          const genreCell = document.createElement("td");
+          genreCell.textContent = movie.genre;
+          row.appendChild(genreCell);
+
+          const priceCell = document.createElement("td");
+          priceCell.textContent = movie.price;
+          row.appendChild(priceCell);
+
+          const stockCell = document.createElement("td");
+          const stockIcon = document.createElement("img");
+          stockIcon.style.height = "10%";
+          stockIcon.style.width = "10%";
+
+          if (movie.stockCount > 0) {
+            stockIcon.src = "./icons/green.png";
+          } else {
+            stockIcon.src = "./icons/red.png";
+          }
+          stockCell.appendChild(stockIcon);
+          row.appendChild(stockCell);
+
+          const buttonCell = document.createElement("td");
+          const rentButton = document.createElement("button");
+          rentButton.className = "button";
+          rentButton.textContent = "Rent";
+          rentButton.href = "home.html";
+          buttonCell.appendChild(rentButton);
+          row.appendChild(buttonCell);
+
+          movieTable.appendChild(row);
+        });
+      }
+
+      // Call the function to generate the movie list on page load
+      generateMovieList();
+    </script>
+
     <div class="footer">
         <div class="footer-sec-1">Made by: Giedre Liekiene</div>
         <div class="footer-sec-2">2023</div>
