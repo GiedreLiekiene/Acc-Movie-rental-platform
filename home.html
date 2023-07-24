@@ -120,21 +120,7 @@
   
         // Add event listener to the "Rent" button
         rentButton.addEventListener("click", () => {
-        // Check if the movie is in stock before allowing rental
-        if (movie.stockCount > 0) {
-        // Reduce the stock count for the rented movie
-        movie.stockCount--;
-  
-        // Add the rented movie to the yourMovies array
-        yourMovies.push({
-          name: movie.name,
-          genre: movie.genre,
-          price: movie.price,
-        });
-  
-        // Update the movie table
-        generateMovieList();
-      }
+            rentMovie(movie);
     });
   
           buttonCell.appendChild(rentButton);
@@ -166,20 +152,14 @@
         });
 
         // Log the rented movie to the console
-        console.log(`You rented: ${movie.name} - ${movie.genre} - ${movie.price}`);
+          console.log(
+            `You rented: ${movie.name} - ${movie.genre} - ${movie.price}`
+          );
 
         // Update the movie table
         generateMovieList();
       }
     }
-
-    // Add event listener to the "Rent" button for each movie
-    const rentButtons = document.querySelectorAll(".button");
-    rentButtons.forEach((button, index) => {
-      button.addEventListener("click", () => {
-        rentMovie(movies[index]);
-      });
-    });
     </script>
     <div class="footer">
         <div class="footer-sec-1">Made by: Giedre Liekiene</div>
