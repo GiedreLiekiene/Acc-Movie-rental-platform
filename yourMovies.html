@@ -71,6 +71,7 @@
       // Function to generate the list of rented movies
       function generateRentedMoviesList() {
         const rentedMoviesTable = document.querySelector(".table2");
+        rentedMoviesTable.innerHTML = ""; // Clear the table
 
         yourMovies.forEach((movie) => {
           const row = document.createElement("tr");
@@ -145,13 +146,32 @@
         if (movieIndex !== -1) {
           yourMovies.splice(movieIndex, 1);
           generateRentedMoviesList(); // Update the table after removing the movie
+          updateHomePageMovieList(movie.name); // Increment the count in stock value in the home page movie list
         }
+      }
+
+      // Function to increment the count in stock value in the home page movie list
+      function updateHomePageMovieList(movieName) {
+        const movieTable = document.getElementById("movieTable");
+        if (!movieTable) return; // If the table is not present, do nothing
+
+        const movieRows = movieTable.querySelectorAll(".table-content");
+        movieRows.forEach((row) => {
+          const nameCell = row.querySelector("td:first-child");
+          if (nameCell.textContent === movieName) {
+            const stockCell = row.querySelector("td:last-child");
+            const stockImage = stockCell.querySelector("img");
+            stockImage.src = "icons/green.png"; // Assuming green.png indicates the movie is in stock
+            // Increment the count in stock value (assuming it's stored as a custom attribute "data-stock")
+            const stockCount = parseInt(stockCell.getAttribute("data-stock"));
+            stockCell.setAttribute("data-stock", stockCount + 1);
+          }
+        });
       }
 
       // Call the function to generate the list of rented movies on page load
       generateRentedMoviesList();
     </script>
-
     <div class="footer">
       <div class="footer-sec-1">Made by: Giedre Liekiene</div>
       <div class="footer-sec-2">2023</div>
