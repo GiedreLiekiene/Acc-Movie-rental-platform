@@ -28,7 +28,9 @@
                     <th>Price</th>
                     <th></th>
                   </tr>
-                  <tr class="table-content">
+
+                  <!-- Previous HTML/CSS code -->
+                  <!-- <tr class="table-content">
                     <td>Batman</td>
                     <td>Action</td>
                     <td><button class="button-time">&#60;</button ><span class="time-window">12h</span><button class="button-time">&#62;</button></td>
@@ -41,10 +43,93 @@
                     <td><button class="button-time">&#60;</button ><span class="time-window">12h</span><button class="button-time">&#62;</button></td>
                     <td>4.55$</td>
                     <td class="btn-column"><button class="button" href="yourMovies.html">Remove</button></td>
-                  </tr>
+                  </tr> -->
                 </table>
             </div>
         </div>
+    
+        <script>
+          // JavaScript array containing information about the movies the user has rented
+          const yourMovies = [
+            {
+              name: "Batman",
+              genre: "Action",
+              time: "12h",
+              price: "4.55$",
+            },
+            {
+              name: "Batman",
+              genre: "Action",
+              time: "12h",
+              price: "4.55$",
+            },
+          ];
+      
+          // Function to generate the list of rented movies
+          function generateRentedMoviesList() {
+            const rentedMoviesTable = document.querySelector(".table2");
+      
+            yourMovies.forEach((movie) => {
+              const row = document.createElement("tr");
+              row.className = "table-content";
+      
+              const nameCell = document.createElement("td");
+              nameCell.textContent = movie.name;
+              row.appendChild(nameCell);
+      
+              const genreCell = document.createElement("td");
+              genreCell.textContent = movie.genre;
+              row.appendChild(genreCell);
+      
+              const timeCell = document.createElement("td");
+              const timeWindow = document.createElement("span");
+              timeWindow.className = "time-window";
+              timeWindow.textContent = movie.time;
+              timeCell.appendChild(createTimeButton("<", "button-time"));
+              timeCell.appendChild(timeWindow);
+              timeCell.appendChild(createTimeButton(">", "button-time"));
+              row.appendChild(timeCell);
+      
+              const priceCell = document.createElement("td");
+              priceCell.textContent = movie.price;
+              row.appendChild(priceCell);
+      
+              const buttonCell = document.createElement("td");
+              buttonCell.className = "btn-column";
+              const removeButton = document.createElement("button");
+              removeButton.className = "button";
+              removeButton.textContent = "Remove";
+              removeButton.addEventListener("click", () => {
+                removeMovie(movie);
+              });
+              buttonCell.appendChild(removeButton);
+              row.appendChild(buttonCell);
+      
+              rentedMoviesTable.appendChild(row);
+            });
+          }
+      
+          // Helper function to create time buttons for rental period
+          function createTimeButton(text, className) {
+            const button = document.createElement("button");
+            button.className = className;
+            button.textContent = text;
+            return button;
+          }
+      
+          // Function to handle removing a movie from yourMovies array
+          function removeMovie(movie) {
+            const movieIndex = yourMovies.findIndex((m) => m.name === movie.name);
+            if (movieIndex !== -1) {
+              yourMovies.splice(movieIndex, 1);
+              generateRentedMoviesList(); // Update the table after removing the movie
+            }
+          }
+      
+          // Call the function to generate the list of rented movies on page load
+          generateRentedMoviesList();
+        </script>
+
               <div class="footer">
                 <div class="footer-sec-1">Made by: Giedre Liekiene</div>
                 <div class="footer-sec-2">2023</div>
