@@ -22,22 +22,35 @@
           </tr>
         </table>
         <div class="profile-card">
-            <div class="main-heading">Profile</div>
-            <div class="profile-pic">
-                <img src="icons/profile.png" style="height: 30%; width: 30%" />
-            </div>
-            <div class="profile-info">
-                <p class="name"><strong>Name:</strong>John</p>
-                <p class="surname"><strong>Surname:</strong>Newman</p>
-                <p class="email"><strong>Email:</strong>john.newman@mail.com></p>
-            </div>
-            <div class="buttons">
-                <button class="button" href="profile.html">Reset password</button>
-                <button class="button" href="profile.html">Reset email</button>
-            </div>
+          <div class="main-heading">Profile</div>
+          <div class="profile-pic">
+            <img src="icons/profile.png" style="height: 30%; width: 30%" />
+          </div>
+          <div class="profile-info">
+            <p class="name" id="name"></p>
+            <p class="surname" id="surname"></p>
+            <p class="email" id="email"></p>
+          </div>
+          <div class="buttons">
+            <button class="button" href="profile.html">Reset password</button>
+            <button class="button" href="profile.html">Reset email</button>
+          </div>
         </div>
       </div>
     </div>
+
+    <script>
+      // Hardcoded values
+      const name = "John";
+      const surname = "Newman";
+      const email = "john.newman@mail.com";
+
+      // Display hardcoded values in the HTML
+      document.getElementById("name").textContent = `Name: ${name}`;
+      document.getElementById("surname").textContent = `Surname: ${surname}`;
+      document.getElementById("email").textContent = `Email: ${email}`;
+    </script>
+
     <div class="footer">
       <div class="footer-sec-1">Made by: Giedre Liekiene</div>
       <div class="footer-sec-2">2023</div>
