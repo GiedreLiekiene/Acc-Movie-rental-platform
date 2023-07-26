@@ -1,1 +1,1 @@
-Movie rental platform for Accenture 
+Movie rental platform for Acc
