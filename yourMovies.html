@@ -71,8 +71,10 @@
       // Function to generate the list of rented movies
       function generateRentedMoviesList() {
         const rentedMoviesTable = document.querySelector(".table2");
-        rentedMoviesTable.innerHTML = ""; // Clear the table
-
+        const elements = document.querySelectorAll("." + "table-content");
+        elements.forEach((element) => {
+          element.remove();
+        });
         yourMovies.forEach((movie) => {
           const row = document.createElement("tr");
           row.className = "table-content";
