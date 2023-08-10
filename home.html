@@ -1,36 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
-    <link href="./home.css" rel="stylesheet" type="text/css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Inter"
+      rel="stylesheet"
+    />
+    <link href="./home.css" rel="stylesheet" type="text/css" />
     <title>Home</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <div class="header">Movie rental</div>
-        <div class="content">
-            <table class="table1">
-                <tr>
-                  <td>Home</td>
-                  <td>Your movies</td>
-                  <td>Profile</td>
-                </tr>
-              </table>
-             
-              <table id="movieTable" class="table2">
-                <th class="main-heading" colspan="5">Available Movies</th>
-                <tr class="table-headings">
-                    <th>Name</th>
-                    <th>Genre</th>
-                    <th>Price for 12h</th>
-                    <th>Is in stock</th>
-                    <th></th>
-                </tr>
-                
-                <!-- Previous HTML/CSS task code -->
-                  <!-- <tr class="table-content">
+      <div class="header">Movie rental</div>
+      <div class="content">
+        <table class="table1">
+          <tr>
+            <td>Home</td>
+            <td>Your movies</td>
+            <td>Profile</td>
+          </tr>
+        </table>
+
+        <table id="movieTable" class="table2">
+          <th class="main-heading" colspan="5">Available Movies</th>
+          <tr class="table-headings">
+            <th>Name</th>
+            <th>Genre</th>
+            <th>Price for 12h</th>
+            <th>Is in stock</th>
+            <th></th>
+          </tr>
+
+          <!-- Previous HTML/CSS task code -->
+          <!-- <tr class="table-content">
                     <td>Batman</td>
                     <td>Action</td>
                     <td>4.55$</td>
@@ -58,8 +61,8 @@
                     <td><img src="icons/red.png" style="height:10%;width: 10%"></td>
                     <td class="btn-column"><button class="button" href="home.html">Rent</button></td>
                   </tr> -->
-              </table>
-        </div>
+        </table>
+      </div>
     </div>
 
     <script>
@@ -74,35 +77,35 @@
         { name: "Movie 7", genre: "Romance", price: "4.25$", stockCount: 0 },
         { name: "Movie 8", genre: "Horror", price: "4.99$", stockCount: 4 },
       ];
-  
+
       // Array to store rented movies
       const yourMovies = [];
-  
-       // Function to generate the movie list dynamically
+
+      // Function to generate the movie list dynamically
       function generateMovieList() {
         const movieTable = document.getElementById("movieTable");
         movieTable.innerHTML = ""; // Clear the existing table content
         movies.forEach((movie) => {
           const row = document.createElement("tr");
           row.className = "table-content";
-  
+
           const nameCell = document.createElement("td");
           nameCell.textContent = movie.name;
           row.appendChild(nameCell);
-  
+
           const genreCell = document.createElement("td");
           genreCell.textContent = movie.genre;
           row.appendChild(genreCell);
-  
+
           const priceCell = document.createElement("td");
           priceCell.textContent = movie.price;
           row.appendChild(priceCell);
-  
+
           const stockCell = document.createElement("td");
           const stockIcon = document.createElement("img");
           stockIcon.style.height = "10%";
           stockIcon.style.width = "10%";
-  
+
           if (movie.stockCount > 0) {
             stockIcon.src = "./icons/green.png";
           } else {
@@ -110,60 +113,75 @@
           }
           stockCell.appendChild(stockIcon);
           row.appendChild(stockCell);
-  
+
           const buttonCell = document.createElement("td");
           buttonCell.className = "btn-column";
           const rentButton = document.createElement("button");
           rentButton.className = "button";
           rentButton.textContent = "Rent";
           rentButton.href = "home.html";
-  
-        // Add event listener to the "Rent" button
-        rentButton.addEventListener("click", () => {
+
+          // Add event listener to the "Rent" button
+          rentButton.addEventListener("click", () => {
             rentMovie(movie);
-    });
-  
+          });
+
           buttonCell.appendChild(rentButton);
           row.appendChild(buttonCell);
           movieTable.appendChild(row);
         });
       }
-  
+
       // Call the function to generate the movie list on page load
       generateMovieList();
-    
+
       // Function to log the content of the yourMovies array to the console
-    function showYourMovies() {
-      console.log("Your Movies:", yourMovies);
-    }
+      function showYourMovies() {
+        console.log("Your Movies:", yourMovies);
+      }
 
-    // Function to handle renting a movie
-    function rentMovie(movie) {
-      // Check if the movie is in stock before allowing rental
-      if (movie.stockCount > 0) {
-        // Reduce the stock count for the rented movie
-        movie.stockCount--;
+      // Function to handle renting a movie
+      function rentMovie(movie) {
+        // Check if the movie is in stock before allowing rental
+        if (movie.stockCount > 0) {
+          // Reduce the stock count for the rented movie
+          movie.stockCount--;
 
-        // Add the rented movie to the yourMovies array
-        yourMovies.push({
-          name: movie.name,
-          genre: movie.genre,
-          price: movie.price,
-        });
+          // Add the rented movie to the yourMovies array
+          yourMovies.push({
+            name: movie.name,
+            genre: movie.genre,
+            price: movie.price,
+          });
 
-        // Log the rented movie to the console
+          // Retrieve current user's information from local storage
+          const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+          if (currentUser) {
+            console.log("Current User:", currentUser);
+
+            // Example: Display the user's name on the page
+            const userNameElement = document.getElementById("userName");
+            if (userNameElement) {
+              userNameElement.textContent = currentUser.name;
+            }
+          } else {
+            console.log("No current user found.");
+          }
+
+          // Log the rented movie to the console
           console.log(
             `You rented: ${movie.name} - ${movie.genre} - ${movie.price}`
           );
 
-        // Update the movie table
-        generateMovieList();
+          // Update the movie table
+          generateMovieList();
+        }
       }
-    }
     </script>
     <div class="footer">
-        <div class="footer-sec-1">Made by: Giedre Liekiene</div>
-        <div class="footer-sec-2">2023</div>
+      <div class="footer-sec-1">Made by: Giedre Liekiene</div>
+      <div class="footer-sec-2">2023</div>
     </div>
-</body>
+  </body>
 </html>
