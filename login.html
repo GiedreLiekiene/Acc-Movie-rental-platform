@@ -54,6 +54,8 @@
 
         <!-- Login form validation  -->
         <script> 
+            let registeredUsers = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+
             function validateLoginForm() {
                 const emailInput = document.getElementById('emailLogin');
                 const passwordInput = document.getElementById('passwordLogin');
@@ -72,6 +74,20 @@
             if (email === '' || password === '') {
                 alert('Both email and password fields are required.');
                 return;
+            }
+
+            //Find a registered user with matching email and password
+            const matchedUser = registeredUsers.find(user => user.email === email && user.password === password);
+
+            if (matchedUser) {
+                alert('Login successful!');
+
+                // Store current user's information in local storage
+                localStorage.setItem('currentUser', JSON.stringify(matchedUser));
+            
+                window.location.href = 'home.html';
+            } else {
+                alert('Invalid email or password. Please try again.');
             }
 
             // Simulate server-side authentication 
@@ -149,6 +165,21 @@
             }
 
             // Redirect to home.html on successful validation
+            window.location.href = 'home.html';
+
+            const newUser = {
+                name: name,
+                surname: surname,
+                email: email,
+                password: password
+            };
+
+            registeredUsers.push(newUser);
+            localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
+
+            // Store current user's information in local storage
+            localStorage.setItem('currentUser', JSON.stringify(newUser));
+
             window.location.href = 'home.html';
         }
         </script>
