@@ -157,6 +157,29 @@
           // Retrieve current user's information from local storage
           const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
+          // List of restricted pages for empty user
+          const restrictedPages = [
+            "home.html",
+            "yourMovies.html",
+            "profile.html",
+          ];
+
+          // Redirect user if currentUser is empty and they are trying to access a restricted page
+          if (
+            !currentUser &&
+            restrictedPages.includes(window.location.pathname.split("/").pop())
+          ) {
+            window.location.href = "login.html"; // Redirect to login page
+          }
+
+          // If currentUser is not empty and the user tries to access the login page, redirect them to home.html
+          if (
+            currentUser &&
+            window.location.pathname.split("/").pop() === "login.html"
+          ) {
+            window.location.href = "home.html";
+          }
+
           if (currentUser) {
             console.log("Current User:", currentUser);
 
