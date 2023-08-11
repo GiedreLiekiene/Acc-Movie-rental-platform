@@ -19,7 +19,11 @@
             <td><a href="home.html" class="table1">Home</a></td>
             <td><a href="yourMovies.html" class="table1">Your movies</a></td>
             <td><a href="profile.html" class="table1">Profile</a></td>
-            <td><button id="logoutButton" class="button">Logout</button></td>
+            <td>
+              <button id="logoutButton" class="button" onclick="logoutUser()">
+                Logout
+              </button>
+            </td>
             <!-- Add this line -->
           </tr>
         </table>
@@ -202,21 +206,15 @@
           // Update the movie table
           generateMovieList();
         }
+      }
 
-        // Add event listener to the "Logout" button
-        const logoutButton = document.getElementById("logoutButton");
-        logoutButton.addEventListener("click", () => {
-          logoutUser();
-        });
+      // Function to handle user logout
+      function logoutUser() {
+        // Clear any user-related data or session
+        localStorage.removeItem("currentUser");
 
-        // Function to handle user logout
-        function logoutUser() {
-          // Clear any user-related data or session
-          localStorage.removeItem("currentUser");
-
-          // Redirect to the login page
-          window.location.href = "login.html";
-        }
+        // Redirect to the login page
+        window.location.href = "login.html";
       }
     </script>
     <div class="footer">
