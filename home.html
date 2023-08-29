@@ -144,8 +144,33 @@
             price: movie.price,
           });
 
+          // Update available movies in local storage
+          const availableMovies = JSON.parse(
+            localStorage.getItem("availableMovies")
+          );
+          const movieIndex = availableMovies.findIndex(
+            (m) => m.name === movie.name
+          );
+          if (movieIndex !== -1) {
+            availableMovies[movieIndex].stockCount--;
+            localStorage.setItem(
+              "availableMovies",
+              JSON.stringify(availableMovies)
+            );
+          }
+
+          // Update the user's information in local storage
+          localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
           // Retrieve current user's information from local storage
           const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+          // Add the rented movie to the user's rented movies
+          currentUser.rentedMovies.push({
+            name: movie.name,
+            genre: movie.genre,
+            price: movie.price,
+          });
 
           // Function to display the user's rented movies
           function displayRentedMovies() {
