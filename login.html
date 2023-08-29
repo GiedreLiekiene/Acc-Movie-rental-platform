@@ -85,7 +85,8 @@
                 // Store current user's information in local storage
                 localStorage.setItem('currentUser', JSON.stringify(matchedUser));
             
-                window.location.href = 'home.html';
+                // Redirect to home.html and pass user's rented movies as a query parameter
+                window.location.href = `home.html?rentedMovies=${JSON.stringify(matchedUser.rentedMovies)}`;
             } else {
                 alert('Invalid email or password. Please try again.');
             }

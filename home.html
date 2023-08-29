@@ -14,6 +14,8 @@
     <div class="container">
       <div class="header">Movie rental</div>
       <div class="content">
+        <h2>Your Rented Movies</h2>
+        <ul id="rentedMoviesList"></ul>
         <table class="table1">
           <tr>
             <td><a href="home.html" class="table1">Home</a></td>
@@ -54,6 +56,9 @@
         { name: "Movie 8", genre: "Horror", price: "4.99$", stockCount: 4 },
       ];
 
+      // Store the available movies array in local storage
+      localStorage.setItem("availableMovies", JSON.stringify(movies));
+
       // Array to store rented movies
       const yourMovies = [];
 
@@ -61,6 +66,15 @@
       function generateMovieList() {
         const movieTable = document.getElementById("movieTable");
         movieTable.innerHTML = ""; // Clear the existing table content
+
+        // Retrieve available movies from local storage
+        const availableMovies =
+          JSON.parse(localStorage.getItem("availableMovies")) || [];
+
+        availableMovies.forEach((movie) => {
+          // ... (rest of the function remains the same)
+        });
+
         movies.forEach((movie) => {
           const row = document.createElement("tr");
           row.className = "table-content";
@@ -132,6 +146,23 @@
 
           // Retrieve current user's information from local storage
           const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+          // Function to display the user's rented movies
+          function displayRentedMovies() {
+            const rentedMoviesList =
+              document.getElementById("rentedMoviesList");
+
+            if (currentUser && currentUser.rentedMovies) {
+              currentUser.rentedMovies.forEach((movie) => {
+                const movieItem = document.createElement("li");
+                movieItem.textContent = `${movie.name} - ${movie.genre} - ${movie.price}`;
+                rentedMoviesList.appendChild(movieItem);
+              });
+            }
+          }
+
+          // Call the function to display rented movies on page load
+          displayRentedMovies();
 
           // List of restricted pages for empty user
           const restrictedPages = [
