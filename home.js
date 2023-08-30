@@ -90,6 +90,8 @@ function rentMovie(movie) {
   if (movie.stockCount > 0) {
     // Reduce the stock count for the rented movie
     movie.stockCount--;
+  } else {
+    alert("Sorry, this movie is out of stock.");
 
     // Add the rented movie to the yourMovies array
     yourMovies.push({
