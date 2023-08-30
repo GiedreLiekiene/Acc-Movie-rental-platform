@@ -84,12 +84,25 @@ function showYourMovies() {
   console.log("Your Movies:", yourMovies);
 }
 
+// Function to update stock count
+function updateStockCount(movieName, decrementBy) {
+  const availableMovies = JSON.parse(localStorage.getItem("availableMovies"));
+  const movieIndex = availableMovies.findIndex(
+    (movie) => movie.name === movieName
+  );
+
+  if (movieIndex !== -1) {
+    availableMovies[movieIndex].stockCount -= decrementBy;
+    localStorage.setItem("availableMovies", JSON.stringify(availableMovies));
+  }
+}
+
 // Function to handle renting a movie
 function rentMovie(movie) {
   // Check if the movie is in stock before allowing rental
   if (movie.stockCount > 0) {
-    // Reduce the stock count for the rented movie
-    movie.stockCount--;
+    // Update the stock count and user's rented movies
+    updateStockCount(movie.name, 1);
   } else {
     alert("Sorry, this movie is out of stock.");
 
@@ -108,9 +121,6 @@ function rentMovie(movie) {
       localStorage.setItem("availableMovies", JSON.stringify(availableMovies));
     }
 
-    // Update the user's information in local storage
-    localStorage.setItem("currentUser", JSON.stringify(currentUser));
-
     // Retrieve current user's information from local storage
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
@@ -120,6 +130,8 @@ function rentMovie(movie) {
       genre: movie.genre,
       price: movie.price,
     });
+    // Update the user's information in local storage
+    localStorage.setItem("currentUser", JSON.stringify(currentUser));
 
     // Function to display the user's rented movies
     function displayRentedMovies() {
